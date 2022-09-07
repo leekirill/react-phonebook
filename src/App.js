@@ -16,31 +16,39 @@ class App extends React.Component {
     filter: "",
   };
 
-  addContact = (data) => {
+  addContact = (obj) => {
     this.setState((prevState) => ({
-      contacts: [data, ...prevState.contacts],
+      contacts: [obj, ...prevState.contacts],
     }));
   };
 
-  changeFilter = (e) => {
+  deleteContact = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(
+        (contact) => contact.id !== contactId
+      ),
+    }));
+  };
+
+  changeFilter = (evt) => {
     this.setState({
-      filter: e.currentTarget.value,
+      filter: evt.currentTarget.value,
     });
   };
 
   render() {
+    const { filter, contacts } = this.state;
+
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm
-          onSubmit={this.addContact}
-          сontactState={this.state.contacts}
-        />
+        <ContactForm onSubmit={this.addContact} сontactState={contacts} />
         <h2>Contacts</h2>
-        <Filter value={this.state.filter} handleChange={this.changeFilter} />
+        <Filter value={filter} handleChange={this.changeFilter} />
         <ContactList
-          contacts={this.state.contacts}
-          filter={this.state.filter}
+          contacts={contacts}
+          filter={filter}
+          onDeleteContact={this.deleteContact}
         />
       </div>
     );

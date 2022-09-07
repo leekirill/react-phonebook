@@ -15,6 +15,7 @@ export default class ContactForm extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
 
+        // валидация имени
         const contactsName = this.props.сontactState.every(e => e.name !== this.state.name)
 
         contactsName ? 
@@ -27,19 +28,15 @@ export default class ContactForm extends React.Component {
 
     }
     
-
     reset = () => {
         this.setState({
         name: "",
         number: "",
         });
     };
-    
 
-    
     render() {
-
-
+        const {name, number} = this.state
 
         return (
             <form className="form" onSubmit={this.handleSubmit}>
@@ -52,7 +49,7 @@ export default class ContactForm extends React.Component {
                             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                             required
-                            value={this.state.name}
+                            value={name}
                             onChange={this.handleChange}
                         />
                     </label>
@@ -64,12 +61,12 @@ export default class ContactForm extends React.Component {
                             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                             required
-                            value={this.state.number}
+                            value={number}
                             onChange={this.handleChange}
                         />
                     </label>
                 </div>
-                <button type="submit">Add contact</button>
+                <button type="submit" className='button'>Add contact</button>
             </form>)
         }
 }
