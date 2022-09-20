@@ -7,12 +7,7 @@ import Filter from "./components/Filter/Filter";
 
 class App extends React.Component {
   state = {
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
+    contacts: [],
     filter: "",
   };
 
@@ -36,19 +31,41 @@ class App extends React.Component {
     });
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem("contacts");
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({
+        contacts: JSON.parse(localStorage.getItem("contacts")),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps);
+    if (prevState !== this.state.contacts) {
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { filter, contacts } = this.state;
+    const { addContact, changeFilter, deleteContact } = this;
 
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addContact} сontactState={contacts} />
-        <h2>Contacts</h2>
-        <Filter value={filter} handleChange={this.changeFilter} />
+        <ContactForm onSubmit={addContact} сontactState={contacts} />
+        <div className="contactsHeading">
+          <h2>Contacts</h2>
+          <p>Total: {this.state.contacts.length}</p>
+        </div>
+        <Filter value={filter} handleChange={changeFilter} />
         <ContactList
           contacts={contacts}
           filter={filter}
-          onDeleteContact={this.deleteContact}
+          onDeleteContact={deleteContact}
         />
       </div>
     );

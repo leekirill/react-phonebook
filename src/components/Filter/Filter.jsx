@@ -11,6 +11,7 @@ export default function Filter({ value, handleChange }) {
                     name="filter"
                     value={value}
                     onChange={handleChange}
+                    placeholder="Type here"
                 ></input>
             </label>
         </React.Fragment>

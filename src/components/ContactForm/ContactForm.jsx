@@ -19,9 +19,9 @@ export default class ContactForm extends React.Component {
         const contactsName = this.props.сontactState.every(e => e.name !== this.state.name)
 
         contactsName ? 
-        this.props.onSubmit({
-            ...this.state,
-            id: nanoid(2)
+            this.props.onSubmit({
+            id: nanoid(2),
+            ...this.state
         }) : alert(`${this.state.name} is already in contacts.`)
 
         this.reset()
@@ -51,6 +51,7 @@ export default class ContactForm extends React.Component {
                             required
                             value={name}
                             onChange={this.handleChange}
+                            placeholder="John"
                         />
                     </label>
                     <label className="labels__item">
@@ -63,6 +64,7 @@ export default class ContactForm extends React.Component {
                             required
                             value={number}
                             onChange={this.handleChange}
+                            placeholder="123-23-34"
                         />
                     </label>
                 </div>
