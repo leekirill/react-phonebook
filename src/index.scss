@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #ececec;
 }
 
 code {
@@ -49,7 +50,6 @@ code {
         margin: 20px 0;
         padding: 32px;
         background: #fff;
-        border: 1px solid #ececec;
         border-radius: 4px;
       }
       .contacts {
@@ -60,6 +60,13 @@ code {
           justify-content: space-between;
           align-items: baseline;
           padding: 5px 0px
+        }
+        span {
+              width: 100%;
+              display: inline-block;
+              /* display: flex; */
+              max-width: 80%;
+              word-break: break-word;
         }
       }
 
@@ -77,24 +84,34 @@ code {
           background: rgb(80, 118, 255);
           color: #fff;
           transition: 250ms;
-
-          &__secondary {
-              @extend .button;
-              background: #ececec;
-              color: #000;
-              transition: 250ms;
-              margin-left: 10px;
-          }
           &:hover {
             cursor: pointer;
             background: rgb(103, 136, 255);
             color: #fff
           }
         }
+
+        .button__secondary {
+          @extend .button;
+          padding: 8px 0px;
+          background: transparent;
+          color: #b1b1b1;
+          transition: 250ms;
+          margin-left: 10px;
+          &:hover {
+            background-color: transparent;
+            color: #ff4f4f
+          }
+        }
         .contactsHeading {
           display: flex;
           align-items: baseline;
           justify-content: space-between;
+        }
+        .contactsDiv {
+          background: #fff;
+          padding: 30px 30px 20px 30px;
+          border-radius: 4px ;
         }
 }
 
