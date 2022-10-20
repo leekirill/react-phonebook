@@ -1,7 +1,15 @@
 import React from "react"
+import * as action from '../../redux/contacts/contacts-actions'
+import { useSelector, useDispatch } from "react-redux"
 
-export default function Filter({ value, handleChange }) {
+
+export default function Filter() {
     
+    const value = useSelector(state => state.contacts.filter)
+    const dispatch = useDispatch()
+
+    const onChange = (e) => dispatch(action.filter(e.target.value))
+
     return (
         <React.Fragment>
             <label className="labels__search">
@@ -10,7 +18,7 @@ export default function Filter({ value, handleChange }) {
                     type="text"
                     name="filter"
                     value={value}
-                    onChange={handleChange}
+                    onChange={onChange}
                     placeholder="Type here"
                 ></input>
             </label>

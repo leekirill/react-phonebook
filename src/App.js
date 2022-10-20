@@ -1,49 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, lazy } from "react";
 import "./index.scss";
+``;
+import { useSelector } from "react-redux";
 
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import Filter from "./components/Filter/Filter";
+const ContactForm = lazy(() => import("./components/ContactForm/ContactForm"));
+const ContactList = lazy(() => import("./components/ContactList/ContactList"));
+const Filter = lazy(() => import("./components/Filter/Filter"));
 
 export default function App() {
-  const [contacts, setContacts] = useState(
-    () => JSON.parse(localStorage.getItem("contacts")) ?? []
-  );
-  const [filter, setFilter] = useState("");
-
-  const changeFilter = (evt) => setFilter(evt.currentTarget.value);
-
-  const addContact = (obj) => setContacts((prevState) => [obj, ...prevState]);
-
-  const deleteContact = (contactId) => {
-    if (window.confirm("Are you sure?") === true) {
-      setContacts((prevState) =>
-        prevState.filter((contact) => contact.id !== contactId)
-      );
-    } else {
-      return;
-    }
-  };
+  const contacts = useSelector((state) => state.contacts);
 
   useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
+    localStorage.setItem("contacts", JSON.stringify(contacts.contacts));
   }, [contacts]);
 
   return (
     <div className="App">
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} сontactState={contacts} />
+      <ContactForm сontactState={contacts} />
       <div className="contactsDiv">
         <div className="contactsHeading">
           <h2>Contacts</h2>
-          <p>Total: {contacts.length}</p>
+          <p>Total: {contacts.contacts.length}</p>
         </div>
-        <Filter value={filter} handleChange={changeFilter} />
-        <ContactList
-          contacts={contacts}
-          filter={filter}
-          onDeleteContact={deleteContact}
-        />
+        <Filter />
+        <ContactList />
       </div>
     </div>
   );

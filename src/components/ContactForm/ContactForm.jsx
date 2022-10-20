@@ -2,11 +2,16 @@ import { useState } from "react"
 import { nanoid } from "nanoid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import * as contactsActions from '../../redux/contacts/contacts-actions'
+import { useDispatch } from "react-redux";
 
-export default function ContactForm({сontactState, onSubmit}) {
+export default function ContactForm({ сontactState }) {
 
     const [name, setName] = useState('')
     const [number, setNumber] = useState('')
+
+    const dispatch = useDispatch()
+    const onSubmit = (contact) => dispatch(contactsActions.addContact(contact))
 
     const handleChange = (e) => {
         const name = e.currentTarget.name
@@ -27,7 +32,7 @@ export default function ContactForm({сontactState, onSubmit}) {
         e.preventDefault();
 
         // валидация имени
-        const contactsName = сontactState.every(e => e.name !== name)
+        const contactsName = сontactState.contacts.every(e => e.name !== name)
 
         contactsName ? 
             onSubmit({
@@ -76,10 +81,9 @@ export default function ContactForm({сontactState, onSubmit}) {
                     </label>
                 </div>
                 <button type="submit" className='button'>Add contact <FontAwesomeIcon icon={faPlus} /></button>
-            </form>)
+            </form>) 
     
-        }
-
+}
 
 // на классах
 
