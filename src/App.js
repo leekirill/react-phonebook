@@ -1,24 +1,18 @@
 import { useEffect, useState } from "react";
 import "./index.scss";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Filter from "./components/Filter/Filter";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
-import { fetchContacts } from "./redux/contacts/contacts-operations";
+import { fetchContact } from "./redux/contacts/contacts-operations";
 
 export default function App() {
-  const [contacts, setContacts] = useState([]);
-
-  // const contacts = useSelector((state) => state.contacts);
-
+  const contacts = useSelector((state) => state.contacts);
   const dispatch = useDispatch();
-  const fetchContact = () => dispatch(fetchContacts());
 
-  console.log(fetchContact());
   useEffect(() => {
-    // localStorage.setItem("contacts", JSON.stringify(contacts.contacts));
-    setContacts(fetchContact());
-  }, []);
+    dispatch(fetchContact());
+  }, [dispatch]);
 
   return (
     <div className="App">

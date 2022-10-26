@@ -27,6 +27,8 @@ export default function ContactForm({ сontactState }) {
                 throw new Error('Ошибка')
         }
     };
+
+
     
     const handleSubmit = e => {
         e.preventDefault();
@@ -40,6 +42,7 @@ export default function ContactForm({ сontactState }) {
                 name,
                 number
             }) 
+
             reset()
         // } else {
         //     alert(`${name} is already in contacts.`)

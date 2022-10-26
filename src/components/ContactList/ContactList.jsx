@@ -14,17 +14,20 @@ export default function ContactList() {
   // const [contactName, setName] = useState('')
   // const [contactNumber, setNumber] = useState('')
 
-  const contacts = useSelector(state => state.contacts.contacts)
-  const filter = useSelector(state => state.contacts.filterChange)
+  const contacts = useSelector(state => state.contacts)
+  const filter = useSelector(state => state.filterChange)
+
+  
   
   const dispatch = useDispatch()
 
   const onDeleteContact = (id) => dispatch(deleteContact(id))
 
-
   const editContact = (id) => {
     setIndex(id)
     setIsActive(!isActive)
+
+    console.log(contacts)
   }
   
   const filteredContacts = contacts.filter((e) =>

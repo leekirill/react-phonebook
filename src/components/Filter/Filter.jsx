@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 
 export default function Filter() {
     
-    const value = useSelector(state => state.contacts.filter)
+    const value = useSelector(state => state.filter)
     const dispatch = useDispatch()
 
     const onChange = (e) => dispatch(action.filter(e.target.value))

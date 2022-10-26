@@ -3,7 +3,8 @@ import { addContactRequest, addContactSuccess, addContactError, deleteContactReq
 
 axios.defaults.baseURL = 'https://63072734c0d0f2b80127fc98.mockapi.io/'
 
-const fetchContacts = () => dispatch => {
+const fetchContact = () => dispatch => {
+    
     dispatch(fetchContactRequest())
 
     axios
@@ -35,4 +36,4 @@ const deleteContact = id => dispatch => {
 
 
 
-export { addContact, deleteContact, fetchContacts }
+export { addContact, deleteContact, fetchContact }

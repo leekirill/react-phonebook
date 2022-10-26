@@ -3,26 +3,17 @@ import { createReducer } from '@reduxjs/toolkit';
 import { addContactRequest, addContactSuccess, addContactError, deleteContactRequest, deleteContactSuccess, deleteContactError, editContact, filter, fetchContactSuccess  } from './contacts-actions'
 
 const contacts = createReducer([], {
-    [fetchContactSuccess]: (_, { payload }) => {
-        console.log(payload)
-        return payload
-    },
-    [addContactSuccess]: (state, { payload }) => {
-        return [...state, payload]
-    },
+    [fetchContactSuccess]: (_, { payload }) => payload,
+    [addContactSuccess]: (state, { payload }) => [...state, payload],
     [deleteContactSuccess]: (state, { payload }) => {
         if (window.confirm("Are you sure?") === false) return
         return state.filter(contact => contact.id !== payload)
     },
-    [editContact]: (state, { payload }) => {
-        return [state.find(contact => contact.id === payload)]
-    }
+    [editContact]: (state, { payload }) => [state.find(contact => contact.id === payload)],
 })
 
 const filterChange = createReducer('', {
-    [filter]: (_, { payload }) => {
-        return payload
-    }
+    [filter]: (_, { payload }) => payload
 })
 
 const loading = createReducer(false, {
