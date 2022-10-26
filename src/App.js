@@ -1,18 +1,24 @@
-import { useEffect, lazy } from "react";
+import { useEffect, useState } from "react";
 import "./index.scss";
-``;
-import { useSelector } from "react-redux";
-
-const ContactForm = lazy(() => import("./components/ContactForm/ContactForm"));
-const ContactList = lazy(() => import("./components/ContactList/ContactList"));
-const Filter = lazy(() => import("./components/Filter/Filter"));
+import { useDispatch } from "react-redux";
+import Filter from "./components/Filter/Filter";
+import ContactForm from "./components/ContactForm/ContactForm";
+import ContactList from "./components/ContactList/ContactList";
+import { fetchContacts } from "./redux/contacts/contacts-operations";
 
 export default function App() {
-  const contacts = useSelector((state) => state.contacts);
+  const [contacts, setContacts] = useState([]);
 
+  // const contacts = useSelector((state) => state.contacts);
+
+  const dispatch = useDispatch();
+  const fetchContact = () => dispatch(fetchContacts());
+
+  console.log(fetchContact());
   useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts.contacts));
-  }, [contacts]);
+    // localStorage.setItem("contacts", JSON.stringify(contacts.contacts));
+    setContacts(fetchContact());
+  }, []);
 
   return (
     <div className="App">
@@ -21,10 +27,10 @@ export default function App() {
       <div className="contactsDiv">
         <div className="contactsHeading">
           <h2>Contacts</h2>
-          <p>Total: {contacts.contacts.length}</p>
+          <p>Total: {contacts && contacts.length}</p>
         </div>
         <Filter />
-        <ContactList />
+        <ContactList contacts={contacts} />
       </div>
     </div>
   );

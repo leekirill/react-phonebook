@@ -1,14 +1,21 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { addContact, deleteContact, filter } from './contacts-actions'
+import { addContactRequest, addContactSuccess, addContactError, deleteContactRequest, deleteContactSuccess, deleteContactError, editContact, filter, fetchContactSuccess  } from './contacts-actions'
 
-const contacts = createReducer(JSON.parse(localStorage.getItem("contacts")) ?? [], {
-    [addContact]: (state, { payload }) => {
+const contacts = createReducer([], {
+    [fetchContactSuccess]: (_, { payload }) => {
+        console.log(payload)
+        return payload
+    },
+    [addContactSuccess]: (state, { payload }) => {
         return [...state, payload]
     },
-    [deleteContact]: (state, { payload }) => {
+    [deleteContactSuccess]: (state, { payload }) => {
         if (window.confirm("Are you sure?") === false) return
         return state.filter(contact => contact.id !== payload)
+    },
+    [editContact]: (state, { payload }) => {
+        return [state.find(contact => contact.id === payload)]
     }
 })
 
@@ -18,9 +25,20 @@ const filterChange = createReducer('', {
     }
 })
 
+const loading = createReducer(false, {
+    [addContactRequest]: () => true,
+    [addContactSuccess]: () => false,
+    [addContactError]: () => false,
+    [deleteContactRequest]: () => true,
+    [deleteContactSuccess]: () => false,
+    [deleteContactError]: () => false
+    
+})
+
+
 // const contacts = (state = JSON.parse(localStorage.getItem("contacts")) ?? [], { type, payload }) => {
 //     switch(type) {
-//         case types.ADD: 
+//         case types.delete: 
 //             return [...state, payload]
         
 //         case types.DELETE:
@@ -43,6 +61,7 @@ const filterChange = createReducer('', {
 
 export default combineReducers({
     contacts,
-    filterChange
+    filterChange,
+    loading,
 })
 

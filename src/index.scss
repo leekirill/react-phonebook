@@ -81,7 +81,7 @@ code {
           padding: 8px 10px;
           border: none;
           border-radius: 4px;
-          background: rgb(80, 118, 255);
+          background: #5076ff;
           color: #fff;
           transition: 250ms;
           &:hover {
@@ -90,19 +90,36 @@ code {
             color: #fff
           }
         }
-
-        .button__secondary {
-          @extend .button;
-          padding: 8px 0px;
-          background: transparent;
-          color: #b1b1b1;
-          transition: 250ms;
-          margin-left: 10px;
-          &:hover {
-            background-color: transparent;
-            color: #ff4f4f
+        .button {
+        &__delete {
+            @extend .button;
+            padding: 8px 0px;
+            background: transparent;
+            color: #b1b1b1;
+            transition: 250ms;
+            margin-left: 10px;
+        
+            &:hover {
+              background-color: transparent;
+              color: #ff4f4f
+            }
+          }
+        
+          &__edit {
+            @extend .button;
+            padding: 8px 0px;
+            background: transparent;
+            color: #b1b1b1;
+            transition: 250ms;
+            margin-left: 10px;
+        
+            &:hover {
+              background-color: transparent;
+              color: #5076ff
+            }
           }
         }
+
         .contactsHeading {
           display: flex;
           align-items: baseline;

@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import * as contactsActions from '../../redux/contacts/contacts-actions'
+import { addContact } from "../../redux/contacts/contacts-operations";
 import { useDispatch } from "react-redux";
 
 export default function ContactForm({ сontactState }) {
@@ -11,7 +11,7 @@ export default function ContactForm({ сontactState }) {
     const [number, setNumber] = useState('')
 
     const dispatch = useDispatch()
-    const onSubmit = (contact) => dispatch(contactsActions.addContact(contact))
+    const onSubmit = (contact) => dispatch(addContact(contact))
 
     const handleChange = (e) => {
         const name = e.currentTarget.name
@@ -32,17 +32,18 @@ export default function ContactForm({ сontactState }) {
         e.preventDefault();
 
         // валидация имени
-        const contactsName = сontactState.contacts.every(e => e.name !== name)
+        // const contactsName = сontactState.contacts.every(e => e.name !== name)
 
-        contactsName ? 
+        // if (contactsName) {
             onSubmit({
-            id: nanoid(2),
-            name,
-            number
-        }) : alert(`${name} is already in contacts.`)
-
-        reset()
-
+                // id: nanoid(2),
+                name,
+                number
+            }) 
+            reset()
+        // } else {
+        //     alert(`${name} is already in contacts.`)
+        // }
     }
     
     const reset = () => {
