@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { addContactRequest, addContactSuccess, addContactError, deleteContactRequest, deleteContactSuccess, deleteContactError, fetchContactRequest, fetchContactSuccess, fetchContactError } from './contacts-actions'
+import { addContactRequest, addContactSuccess, addContactError, deleteContactRequest, deleteContactSuccess, deleteContactError, editContactRequest, editContactSuccess, editContactError, fetchContactRequest, fetchContactSuccess, fetchContactError } from './contacts-actions'
 
 axios.defaults.baseURL = 'https://63072734c0d0f2b80127fc98.mockapi.io/'
 
@@ -35,5 +35,18 @@ const deleteContact = id => dispatch => {
 }
 
 
+const editContact = (id, name, number) => dispatch => {
 
-export { addContact, deleteContact, fetchContact }
+    dispatch(editContactRequest());
+
+    axios
+        .put(`/contacts/${id}`, {name, number})
+        .then(({ data }) => dispatch(editContactSuccess(data)))
+        .catch(error => dispatch(editContactError(error)))
+
+}
+
+
+
+
+export { addContact, deleteContact, editContact, fetchContact }

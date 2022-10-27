@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { deleteContact } from '../../redux/contacts/contacts-operations'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ContactListForm from '../ContactList/ContactListForm'
 import { nanoid } from 'nanoid'
 import { ThreeDots } from  'react-loader-spinner'
@@ -13,8 +13,6 @@ import { ThreeDots } from  'react-loader-spinner'
 export default function ContactList() {
   const [isActive, setIsActive] = useState(false)
   const [index, setIndex] = useState(null)
-  // const [contactName, setName] = useState('')
-  // const [contactNumber, setNumber] = useState('')
 
   const contacts = useSelector(state => state.contacts)
   const filter = useSelector(state => state.filterChange)
@@ -28,6 +26,7 @@ export default function ContactList() {
     if (window.confirm("Are you sure?") === false) return
     return onDeleteContact(id)
   }
+
 
   const editContact = (id) => {
     setIndex(id)
@@ -54,7 +53,7 @@ export default function ContactList() {
           /> : filteredContacts.map(({ id, name, number }) => {
 
           if (id === index && isActive === true) {
-            return <ContactListForm key={nanoid(2)} name={name} number={number} setIsActive={setIsActive} contacts={contacts} />
+            return <ContactListForm key={nanoid(2)} name={name} number={number} setIsActive={setIsActive} index={index} />
           }
             return <li key={nanoid(2)}><span>{`${name + ": " + number}`}</span><button className="button__edit" onClick={() => editContact(id)}><FontAwesomeIcon icon={faEdit} /></button><button className="button__delete" onClick={() => onClickDeleteContact(id)}><FontAwesomeIcon icon={faTrash} /></button></li>;
         })}

@@ -12,7 +12,11 @@ const deleteContactRequest = createAction('contacts/deleteContactRequest')
 const deleteContactSuccess = createAction('contacts/deleteContactSuccess')
 const deleteContactError = createAction('contacts/deleteContactError')
 
+const editContactRequest = createAction('contacts/editContactRequest')
+const editContactSuccess = createAction('contacts/editContactSuccess')
+const editContactError = createAction('contacts/editContactError')
+
 const editContact = createAction('contacts/edit')
 const filter = createAction('contacts/changeFilter')
 
-export { addContactRequest, addContactSuccess, addContactError, deleteContactRequest, deleteContactSuccess, deleteContactError, fetchContactRequest, fetchContactSuccess, fetchContactError, filter, editContact }
+export { addContactRequest, addContactSuccess, addContactError, deleteContactRequest, deleteContactSuccess, deleteContactError, editContactRequest, editContactSuccess, editContactError, fetchContactRequest, fetchContactSuccess, fetchContactError, filter, editContact }

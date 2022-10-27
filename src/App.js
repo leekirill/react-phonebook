@@ -8,10 +8,7 @@ import { fetchContact } from "./redux/contacts/contacts-operations";
 
 export default function App() {
   const contacts = useSelector((state) => state.contacts);
-  const isLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
-
-  console.log(contacts);
 
   useEffect(() => {
     dispatch(fetchContact());
@@ -20,14 +17,14 @@ export default function App() {
   return (
     <div className="App">
       <h1>Phonebook</h1>
-      <ContactForm сontactState={contacts} />
+      <ContactForm />
       <div className="contactsDiv">
         <div className="contactsHeading">
           <h2>Contacts</h2>
           <p>Total: {contacts && contacts.length}</p>
         </div>
         <Filter />
-        <ContactList contacts={contacts} />
+        <ContactList />
       </div>
     </div>
   );
