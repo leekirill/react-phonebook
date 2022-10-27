@@ -3,12 +3,14 @@ import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { addContact } from "../../redux/contacts/contacts-operations";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-export default function ContactForm({ сontactState }) {
+export default function ContactForm() {
 
     const [name, setName] = useState('')
     const [number, setNumber] = useState('')
+    
+    const contacts = useSelector(state => state.contacts)
 
     const dispatch = useDispatch()
     const onSubmit = (contact) => dispatch(addContact(contact))
@@ -34,19 +36,18 @@ export default function ContactForm({ сontactState }) {
         e.preventDefault();
 
         // валидация имени
-        // const contactsName = сontactState.contacts.every(e => e.name !== name)
+        const contactsName = contacts.every(e => e.name !== name)
 
-        // if (contactsName) {
+         if (contactsName) {
             onSubmit({
-                // id: nanoid(2),
                 name,
                 number
             }) 
 
             reset()
-        // } else {
-        //     alert(`${name} is already in contacts.`)
-        // }
+         } else {
+             alert(`${name} is already in contacts.`)
+         }
     }
     
     const reset = () => {

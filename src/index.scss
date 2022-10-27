@@ -54,6 +54,10 @@ code {
       }
       .contacts {
         margin-top: 10px;
+        
+        div[aria-label="three-dots-loading"] {
+          justify-content: center;
+        }
 
         li {
           display: flex;

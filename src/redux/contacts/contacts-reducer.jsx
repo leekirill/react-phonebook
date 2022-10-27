@@ -5,11 +5,8 @@ import { addContactRequest, addContactSuccess, addContactError, deleteContactReq
 const contacts = createReducer([], {
     [fetchContactSuccess]: (_, { payload }) => payload,
     [addContactSuccess]: (state, { payload }) => [...state, payload],
-    [deleteContactSuccess]: (state, { payload }) => {
-        if (window.confirm("Are you sure?") === false) return
-        return state.filter(contact => contact.id !== payload)
-    },
-    [editContact]: (state, { payload }) => [state.find(contact => contact.id === payload)],
+    [deleteContactSuccess]: (state, { payload }) => state.filter(contact => contact.id !== payload),
+    // [editContact]: (state, { payload }) => [state.find(contact => contact.id === payload)],
 })
 
 const filterChange = createReducer('', {
@@ -30,8 +27,7 @@ const loading = createReducer(false, {
 // const contacts = (state = JSON.parse(localStorage.getItem("contacts")) ?? [], { type, payload }) => {
 //     switch(type) {
 //         case types.delete: 
-//             return [...state, payload]
-        
+//             return [...state, payload] 
 //         case types.DELETE:
 //             if (window.confirm("Are you sure?") === false) return
 //             return state.filter(contact => contact.id !== payload)

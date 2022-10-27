@@ -8,7 +8,10 @@ import { fetchContact } from "./redux/contacts/contacts-operations";
 
 export default function App() {
   const contacts = useSelector((state) => state.contacts);
+  const isLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
+
+  console.log(contacts);
 
   useEffect(() => {
     dispatch(fetchContact());
