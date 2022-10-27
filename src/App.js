@@ -5,9 +5,12 @@ import Filter from "./components/Filter/Filter";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import { fetchContact } from "./redux/contacts/contacts-operations";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function App() {
+  const [isActive, setIsActive] = useState(false);
   const contacts = useSelector((state) => state.contacts);
+  const isLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,13 +21,38 @@ export default function App() {
     <div className="App">
       <h1>Phonebook</h1>
       <ContactForm />
-      <div className="contactsDiv">
-        <div className="contactsHeading">
-          <h2>Contacts</h2>
-          <p>Total: {contacts && contacts.length}</p>
-        </div>
-        <Filter />
-        <ContactList />
+
+      <div className="contacts">
+        {isLoading ? (
+          <ThreeDots
+            height="40"
+            width="40"
+            radius="9"
+            color="#5076ff"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
+        ) : (
+          <>
+            <h2>Contacts</h2>
+            <div className="contactsHeading">
+              {isActive ? (
+                <Filter />
+              ) : (
+                <button
+                  className="searchButton"
+                  onClick={() => setIsActive(!isActive)}
+                >
+                  Search
+                </button>
+              )}
+              <p>Total: {contacts && contacts.length}</p>
+            </div>
+            <ContactList />
+          </>
+        )}
       </div>
     </div>
   );

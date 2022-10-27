@@ -24,10 +24,20 @@ export default function ContactListForm({ name, number, setIsActive, index }) {
 
     
     return (
-        <form>
-            <input value={contactName} onChange={handleNameChange}></input>
-            <input value={contactNumber} onChange={handleNumberChange}></input>
-            <button type='submit' onClick={() => saveContact(index, contactName, contactNumber)}>Save</button>
+        <form onSubmit={() => saveContact(index, contactName, contactNumber)}>
+            <input
+                type="text"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                value={contactName}
+                onChange={handleNameChange}
+                required></input>
+            <input
+                type="tel"
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                value={contactNumber}
+                onChange={handleNumberChange}
+                required></input>
+            <button type='submit'>Save</button>
         </form>
     )
 }

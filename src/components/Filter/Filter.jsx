@@ -13,13 +13,13 @@ export default function Filter() {
     return (
         <React.Fragment>
             <label className="labels__search">
-            Find contact by name
+            
                 <input
                     type="text"
                     name="filter"
                     value={value}
                     onChange={onChange}
-                    placeholder="Type here"
+                    placeholder="Find contact by name"
                 ></input>
             </label>
         </React.Fragment>

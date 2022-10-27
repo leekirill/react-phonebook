@@ -33,13 +33,11 @@ export default function ContactList() {
     setIsActive(!isActive)
   }
   
-  const filteredContacts = contacts.filter((e) =>
-      e.name.toLowerCase().includes(filter.toLowerCase())
-  );  
+  const filteredContacts = contacts.filter((e) => e.name.toLowerCase().includes(filter.toLowerCase()))
 
 
     return (
-      <ul className="contacts">
+      <ul className="contactsList">
         
         {isLoading ? <ThreeDots 
           height="40" 
