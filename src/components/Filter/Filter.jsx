@@ -1,19 +1,18 @@
 import React from "react"
-import * as action from '../../redux/contacts/contacts-actions'
+import { filter } from '../../redux/contacts/contacts-actions'
 import { useSelector, useDispatch } from "react-redux"
 
 
 export default function Filter() {
     
     const value = useSelector(state => state.filter)
-    const dispatch = useDispatch()
 
-    const onChange = (e) => dispatch(action.filter(e.target.value))
+    const dispatch = useDispatch()
+    const onChange = (e) => dispatch(filter(e.target.value))
 
     return (
         <React.Fragment>
             <label className="labels__search">
-            
                 <input
                     type="text"
                     name="filter"

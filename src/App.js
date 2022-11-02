@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
-import "./index.scss";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { fetchContact } from "./redux/contacts/contacts-operations";
+import { ThreeDots } from "react-loader-spinner";
 import Filter from "./components/Filter/Filter";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
-import { fetchContact } from "./redux/contacts/contacts-operations";
-import { ThreeDots } from "react-loader-spinner";
+import "./index.scss";
 
 export default function App() {
   const [isActive, setIsActive] = useState(false);
+
   const contacts = useSelector((state) => state.contacts);
   const isLoading = useSelector((state) => state.loading);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,7 +49,7 @@ export default function App() {
                   className="searchButton"
                   onClick={() => setIsActive(!isActive)}
                 >
-                  Search
+                  <FontAwesomeIcon icon={faSearch} />
                 </button>
               )}
               <p>Total: {contacts && contacts.length}</p>

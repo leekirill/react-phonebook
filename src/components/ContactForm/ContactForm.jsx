@@ -1,5 +1,4 @@
 import { useState } from "react"
-// import { nanoid } from "nanoid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { addContact } from "../../redux/contacts/contacts-operations";
@@ -29,21 +28,15 @@ export default function ContactForm() {
                 throw new Error('Ошибка')
         }
     };
-
-
     
     const handleSubmit = e => {
         e.preventDefault();
 
         // валидация имени
-        const contactsName = contacts.every(e => e.name !== name)
+        const contactName = contacts.every(e => e.name !== name)
 
-         if (contactsName) {
-            onSubmit({
-                name,
-                number
-            }) 
-
+         if (contactName) {
+            onSubmit({name,number}) 
             reset()
          } else {
              alert(`${name} is already in contacts.`)
