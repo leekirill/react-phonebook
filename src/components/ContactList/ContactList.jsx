@@ -31,6 +31,8 @@ export default function ContactList() {
   
   const filteredContacts = contacts.filter((e) => e.name.toLowerCase().includes(filter.toLowerCase()))
 
+  if (filteredContacts.length === 0) return <span>No found</span>
+
     return (
       <ul className="contactsList">
         

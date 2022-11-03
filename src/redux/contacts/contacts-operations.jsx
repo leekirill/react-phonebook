@@ -3,29 +3,30 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://63072734c0d0f2b80127fc98.mockapi.io/'
 
-const fetchContact = createAsyncThunk('contacts/fetchContact',
+export const fetchContact = createAsyncThunk('contacts/fetchContact',
     async () => {
         const { data } = await axios.get('/contacts')
         return data
     }
 )
 
-const addContact = createAsyncThunk('contacts/fetchContact',
+export const addContact = createAsyncThunk('contacts/addContact',
     async (contact) => {
         const { data } = await axios.post('/contacts', contact)
         return data
     }
 )
 
-const deleteContact = createAsyncThunk('contacts/fetchContact',
+export const deleteContact = createAsyncThunk('contacts/deleteContact',
     async (id) => {
         const { data } = await axios.delete(`/contacts/${id}`)
-        return data
+        return data.id
     }
 )
 
-const editContact = createAsyncThunk('contacts/fetchContact',
-    async (id, name, number) => {
+export const editContact = createAsyncThunk('contacts/editContact',
+    async (contact) => {
+        const {id, name, number} = contact 
         const { data } = await axios.put(`/contacts/${id}`, {name, number})
         return data
     }
@@ -38,7 +39,7 @@ const editContact = createAsyncThunk('contacts/fetchContact',
 //     axios
 //         .get('/contacts')
 //         .then(({ data }) => dispatch(fetchContactSuccess(data)))
-//         .catch(error => dispatch(fetchContactError(error)))
+//         .catch(error => dispatch(fetchContactError(error)))`
 // }
 
 // const addContact = contact => dispatch => {
@@ -73,8 +74,3 @@ const editContact = createAsyncThunk('contacts/fetchContact',
 //         .catch(error => dispatch(editContactError(error)))
 
 // }
-
-
-
-
-export { addContact, deleteContact, editContact, fetchContact }

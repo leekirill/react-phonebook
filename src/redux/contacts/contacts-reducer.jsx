@@ -10,7 +10,7 @@ const contacts = createReducer([], {
     [editContact.fulfilled]: (state, { payload }) => state.map(contact => {
         if (contact.id === payload.id) return payload
         return contact
-    })
+    }) 
 })
 
 const filterChange = createReducer('', {

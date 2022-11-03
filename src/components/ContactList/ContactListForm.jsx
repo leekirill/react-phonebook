@@ -5,7 +5,7 @@ import { editContact } from '../../redux/contacts/contacts-operations'
 export default function ContactListForm({ name, number, index, setIsActive }) {
 
     const dispatch = useDispatch()
-    const onEditContact = (id, name, number) => dispatch(editContact(id, name, number))
+    const onEditContact = ({id, name, number}) => dispatch(editContact({id, name, number}))
 
     const [contactsName, setContactsName] = useState(name)
     const [contactsNumber, setContactsNumber] = useState(number)
@@ -17,8 +17,7 @@ export default function ContactListForm({ name, number, index, setIsActive }) {
         setContactsName(contactsName)
         setContactsNumber(contactsNumber)
         setIsActive(false)
-
-        return onEditContact(index, name, number)
+        onEditContact({id: index, name, number})
     }
 
     return (
