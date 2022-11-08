@@ -1,7 +1,82 @@
 import { combineReducers } from 'redux';
 import { createReducer, createSlice } from '@reduxjs/toolkit';
 import { addContact, deleteContact, editContact, fetchContact } from './contacts-operations'
-import {filter} from './contacts-actions'
+import { filter } from './contacts-actions'
+
+const contactSlice = createSlice({
+    name: 'contacts', 
+    initialState: { contacts: [], filterChange: '', loading: false },
+    // reducers: {
+    //     [filter]: (state, { payload }) => {
+    //         return {
+    //             ...state,
+    //             filterChange: payload,
+    //             loading: false
+    //         }
+    //     }
+    // },
+    extraReducers: {
+        [fetchContact.fulfilled]: (state, { payload }) => {
+            state.contacts = payload.reverse()
+            state.loading = false
+            // return {
+            //     ...state,
+            //     contacts: payload,
+            //     loading: false
+            // }
+        },
+        
+
+        [addContact.fulfilled]: (state, { payload }) => {
+            state.contacts = [payload, ...state.contacts]
+            state.loading = false
+            // return {
+            //     ...state,
+            //     contacts: [payload, ...state.contacts],
+            //     loading: false
+            // }
+        },
+        [deleteContact.fulfilled]: (state, { payload }) => {
+            state.contacts = state.contacts.filter(e => e.id !== payload)
+            state.loading = false
+            // return {
+            //     ...state,
+            //     contacts: state.contacts.filter(e => e.id !== payload),
+            //     loading: false,
+            // }
+        },
+        [editContact.fulfilled]: (state, { payload }) => {
+            const editedTask = state.contacts.map(contact => {
+                if (contact.id === payload.id) return payload
+                return contact
+            })
+            
+            state.contacts = editedTask
+            state.loading = false
+            // return {
+            //     ...state,
+            //     contacts: state.contacts.map(contact => {
+            //         if (contact.id === payload.id) return payload
+            //         return contact
+            //     }),
+            //     loading: false,
+            // }
+        },
+        [fetchContact.pending]: (state, _) => { state.loading = true },
+        [addContact.pending]: (state, _) => { state.loading = true },
+        [deleteContact.pending]: (state, _) => { state.loading = true },
+        [editContact.pending]: (state, _) => {
+            state.loading = true
+
+            // return {
+            //     ...state,
+            //     loading: true,
+            // }
+        },
+    }
+})
+
+export default contactSlice.reducer
 
 // const contacts = createReducer([], {
 //     [fetchContact.fulfilled]: (_, { payload }) => payload,
@@ -12,11 +87,11 @@ import {filter} from './contacts-actions'
 //         return contact
 //     }) 
 // })
-
+`
 // const filterChange = createReducer('', {
 //     [filter]: (_, { payload }) => payload
 // })
-
+`
 // const loading = createReducer(false, {
 //     [fetchContact.pending]: () => true,
 //     [fetchContact.fulfilled]: () => false,
@@ -61,78 +136,3 @@ import {filter} from './contacts-actions'
 //     loading,
 // })
 
-const contactSlice = createSlice({
-    name: 'contacts', 
-    initialState: { contacts: [], filterChange: '', loading: false },
-    reducers: {
-        [filter]: (state, { payload }) => {
-            return {
-                ...state,
-                filterChange: payload,
-                loading: false
-            }
-        }
-    },
-    extraReducers: {
-        [fetchContact.fulfilled]: (state, { payload }) => {
-            return {
-                ...state,
-                contacts: payload,
-                loading: false
-            }
-        },
-        [fetchContact.pending]: (state, _) => {
-            return {
-                ...state,
-                loading: true
-            }
-        },
-
-        [addContact.fulfilled]: (state, { payload }) => {
-            return {
-                ...state,
-                contacts: [payload, ...state.contacts],
-                loading: false
-            }
-        },
-        [addContact.pending]: (state, _) => {
-            return {
-                ...state,
-                loading: true
-            }
-        },
-        [deleteContact.fulfilled]: (state, { payload }) => {
-            return {
-                ...state,
-                contacts: state.contacts.filter(e => e.id !== payload),
-                loading: false,
-            }
-        },
-        [deleteContact.pending]: (state, _) => {
-            return {
-                ...state,
-                loading: true,
-            }
-        },
-        [editContact.fulfilled]: (state, { payload }) => {
-            return {
-                ...state,
-                contacts: state.contacts.map(contact => {
-                    if (contact.id === payload.id) return payload
-                    return contact
-                }),
-                loading: false,
-            }
-        },
-        [editContact.pending]: (state, _) => {
-            return {
-                ...state,
-                loading: true,
-            }
-        },
-
-
-    }
-})
-
-export default contactSlice.reducer
