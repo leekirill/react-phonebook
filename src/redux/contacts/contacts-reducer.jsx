@@ -1,20 +1,16 @@
 import { combineReducers } from 'redux';
 import { createReducer, createSlice } from '@reduxjs/toolkit';
 import { addContact, deleteContact, editContact, fetchContact } from './contacts-operations'
-import { filter } from './contacts-actions'
+// import { filter } from './contacts-actions'
 
 const contactSlice = createSlice({
     name: 'contacts', 
     initialState: { contacts: [], filterChange: '', loading: false },
-    // reducers: {
-    //     [filter]: (state, { payload }) => {
-    //         return {
-    //             ...state,
-    //             filterChange: payload,
-    //             loading: false
-    //         }
-    //     }
-    // },
+    reducers: {
+        changeFilter: (state, { payload }) => {
+            state.filterChange = payload
+        }
+    },
     extraReducers: {
         [fetchContact.fulfilled]: (state, { payload }) => {
             state.contacts = payload.reverse()
@@ -75,7 +71,7 @@ const contactSlice = createSlice({
         },
     }
 })
-
+console.log(contactSlice.actions)
 export default contactSlice.reducer
 
 // const contacts = createReducer([], {
@@ -87,11 +83,11 @@ export default contactSlice.reducer
 //         return contact
 //     }) 
 // })
-`
+
 // const filterChange = createReducer('', {
 //     [filter]: (_, { payload }) => payload
 // })
-`
+
 // const loading = createReducer(false, {
 //     [fetchContact.pending]: () => true,
 //     [fetchContact.fulfilled]: () => false,
