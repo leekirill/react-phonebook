@@ -1,5 +1,5 @@
 import React from "react"
-import { filter } from '../../redux/contacts/contacts-actions'
+import { filter } from '../../redux/contacts/contacts-reducer'
 import { useSelector, useDispatch } from "react-redux"
 
 

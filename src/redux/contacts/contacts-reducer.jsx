@@ -1,13 +1,11 @@
-import { combineReducers } from 'redux';
-import { createReducer, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { addContact, deleteContact, editContact, fetchContact } from './contacts-operations'
-// import { filter } from './contacts-actions'
 
 const contactSlice = createSlice({
     name: 'contacts', 
     initialState: { contacts: [], filterChange: '', loading: false },
     reducers: {
-        changeFilter: (state, { payload }) => {
+        filter: (state, { payload }) => {
             state.filterChange = payload
         }
     },
@@ -71,7 +69,8 @@ const contactSlice = createSlice({
         },
     }
 })
-console.log(contactSlice.actions)
+
+export const { filter } = contactSlice.actions
 export default contactSlice.reducer
 
 // const contacts = createReducer([], {
