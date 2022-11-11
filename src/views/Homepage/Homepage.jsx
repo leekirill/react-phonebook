@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { fetchContact } from "../../redux/contacts/contacts-operations";
+import { fetchContact } from "../../Redux/contacts/contacts-operations";
 import { ThreeDots } from "react-loader-spinner";
 
-import Filter from "../../components/Filter/Filter";
-import ContactForm from "../../components/ContactForm/ContactForm";
-import ContactList from "../../components/ContactList/ContactList";
+import Filter from "../../Components/Filter/Filter";
+import ContactForm from "../../Components/ContactForm/ContactForm";
+import ContactList from "../../Components/ContactList/ContactList";
+
+import style from './Homepage.module.scss'
 
 const Homepage = () => {
 
@@ -23,11 +25,13 @@ const [isActive, setIsActive] = useState(false);
   }, [dispatch]);
 
     return (
-        <div className="App">
-            <h1>Phonebook</h1>
-                <ContactForm />
+        <div className={style.content}>
+                <div className={style.form}>
+                    <h2>Phonebook</h2>
+                    <ContactForm />
+                </div>
 
-                <div className="contacts">
+            <div className={style.contacts}>
                 {isLoading ? (
                     <ThreeDots
                     height="40"
@@ -42,7 +46,7 @@ const [isActive, setIsActive] = useState(false);
                 ) : (
                     <>
                     <h2>Contacts</h2>
-                    <div className="contactsHeading">
+                    <div className={style.contactsHeading}>
                         {isActive ? (
                         <Filter />
                         ) : (
@@ -59,8 +63,10 @@ const [isActive, setIsActive] = useState(false);
                     </>
                 )}
                 </div>
-            </div>
-    )
+           </div>
+
+        )
+        
 }     
 
 export default Homepage

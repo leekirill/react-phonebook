@@ -1,22 +1,22 @@
 import { Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header";
-import Homepage from "./views/Homepage/Homepage";
-import Register from "./views/Register/Register";
-import Login from "./views/Login/Login";
+import Header from "./Components/Header/Header";
+import Homepage from "./Views/Homepage/Homepage";
+import Register from "./Views/Register/Register";
+import Login from "./Views/Login/Login";
 
 import "./index.scss";
 
 export default function App() {
   return (
-    <>
+    <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="signup" element={<Register />} />
         <Route path="login" element={<Login />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

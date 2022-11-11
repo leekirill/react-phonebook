@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { addContact } from "../../redux/contacts/contacts-operations";
+import { addContact } from "../../Redux/contacts/contacts-operations";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function ContactForm() {
@@ -49,35 +49,27 @@ export default function ContactForm() {
     };
 
         return (
-            <form className="form" onSubmit={handleSubmit}>
-                <div className="labels">
-                    <label className="labels__item">
-                        Name
-                        <input
-                            type="text"
-                            name="name"
-                            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                            required
-                            value={name}
-                            onChange={handleChange}
-                            placeholder="John"
-                        />
-                    </label>
-                    <label className="labels__item">
-                        Tel
-                        <input
-                            type="tel"
-                            name="number"
-                            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                            required
-                            value={number}
-                            onChange={handleChange}
-                            placeholder="123-23-34"
-                        />
-                    </label>
-                </div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="name"
+                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                    title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                    required
+                    value={name}
+                    onChange={handleChange}
+                    placeholder="name"
+                />
+                <input
+                    type="tel"
+                    name="number"
+                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                    required
+                    value={number}
+                    onChange={handleChange}
+                    placeholder="number"
+                />
                 <button type="submit" className='button'>Add contact <FontAwesomeIcon icon={faPlus} /></button>
             </form>) 
     

@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
-import { deleteContact } from '../../redux/contacts/contacts-operations'
+import { deleteContact } from '../../Redux/contacts/contacts-operations'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { nanoid } from 'nanoid'
 import { ThreeDots } from 'react-loader-spinner'
-import ContactListForm from '../ContactList/ContactListForm'
+import ContactListForm from './ContactListForm'
+import style from './ContactList.module.scss'
 
 export default function ContactList() {
 
@@ -34,7 +35,7 @@ export default function ContactList() {
   if (filteredContacts.length === 0) return <span>No found</span>
 
     return (
-      <ul className="contactsList">
+      <ul className={style.contactsList}>
         
         {isLoading ? <ThreeDots 
           height="40" 
@@ -50,7 +51,7 @@ export default function ContactList() {
           if (id === index && isActive === true) {
             return <ContactListForm key={nanoid(2)} name={name} number={number} setIsActive={setIsActive} index={index} />
           } 
-            return <li key={nanoid(2)}><span>{`${name + ": " + number}`}</span><button className="button__edit" onClick={() => editContact(id)}><FontAwesomeIcon icon={faEdit} /></button><button className="button__delete" onClick={() => onClickDeleteContact(id)}><FontAwesomeIcon icon={faTrash} /></button></li>;
+            return <li key={nanoid(2)} className={style.li}><span className={style.span}>{`${name + ": " + number}`}</span><button className={style.btnEdit} onClick={() => editContact(id)}><FontAwesomeIcon icon={faEdit} /></button><button className={style.btnDelete} onClick={() => onClickDeleteContact(id)}><FontAwesomeIcon icon={faTrash} /></button></li>;
         })}
 
       </ul>

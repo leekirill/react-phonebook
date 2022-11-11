@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { editContact } from '../../redux/contacts/contacts-operations'
+import { editContact } from '../../Redux/contacts/contacts-operations'
 
 export default function ContactListForm({ name, number, index, setIsActive }) {
 

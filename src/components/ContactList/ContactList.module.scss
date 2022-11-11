@@ -1,0 +1,47 @@
+.contactsList {
+    margin-top: 10px;
+
+    div[aria-label="three-dots-loading"] {
+        justify-content: center;
+    }
+
+    .li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0px;
+        border-top: 1px solid #c4c4c4;
+        &:last-child {
+            border-bottom: 1px solid #c4c4c4;
+        }
+    }
+
+    .span {
+        width: 100%;
+        display: inline-block;
+        word-break: break-word;
+        text-align: left;
+        
+    }
+}
+
+.btn {
+    &Delete {
+        background: transparent;
+        color: #b1b1b1;
+        transition: 250ms;
+
+        &:hover {
+            background-color: transparent;
+            color: #ff4f4f
+        }
+    }
+
+    &Edit {
+        @extend .btnDelete;
+        &:hover {
+            color: #5076ff
+        }
+    }
+}
+
