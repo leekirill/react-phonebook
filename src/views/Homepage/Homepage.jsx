@@ -27,7 +27,7 @@ const [isActive, setIsActive] = useState(false);
     return (
         <div className={style.content}>
                 <div className={style.form}>
-                    <h2>Phonebook</h2>
+                    <h2>Add new contact</h2>
                     <ContactForm />
                 </div>
 
@@ -46,12 +46,13 @@ const [isActive, setIsActive] = useState(false);
                 ) : (
                     <>
                     <h2>Contacts</h2>
+                    <ContactList />
                     <div className={style.contactsHeading}>
                         {isActive ? (
                         <Filter />
                         ) : (
                         <button
-                            className="searchButton"
+                            className={style.searchBtn}
                             onClick={() => setIsActive(!isActive)}
                         >
                             <FontAwesomeIcon icon={faSearch} />
@@ -59,7 +60,6 @@ const [isActive, setIsActive] = useState(false);
                         )}
                         <p>Total: {contacts && contacts.length}</p>
                     </div>
-                    <ContactList />
                     </>
                 )}
                 </div>

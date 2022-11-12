@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import style from './Header.module.scss'
 
 const Header = () => {
@@ -7,11 +7,11 @@ const Header = () => {
             <div className={style.container}>
                 <div className={style.content}>
                     <div className={style.logo}>
-                        <Link to='/'>Logo</Link>
+                        <Link to='/' className={style.link}>Phone<span>Book</span></Link>
                     </div>
                     <div className={style.signup}>
-                        <Link to='signup'>Регистрация</Link>
-                        <Link to='login'>Войти</Link>
+                        <NavLink to='signup' className={({isActive}) => isActive ? style.linkActive : style.link}>Регистрация</NavLink>
+                        <NavLink to='login' className={({isActive}) => isActive ? style.linkActive : style.link}>Войти</NavLink>
                     </div>
                     <div className={style.user}>
                         <span>{`Добро пожаловать, ${'User'}`}</span>
