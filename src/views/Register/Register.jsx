@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import * as authOperations from '../../Redux/auth/auth-operations'
 import style from './Register.module.scss'
 
 const Register = () => {
@@ -6,7 +8,8 @@ const Register = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    
+    const dispatch = useDispatch()
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -24,7 +27,9 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
+        dispatch(authOperations.register({ name, email, password }))
+        
         console.log(
             {name, email, password}
         )

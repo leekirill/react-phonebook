@@ -13,9 +13,9 @@ export default function ContactList() {
   const [isActive, setIsActive] = useState(false)
   const [index, setIndex] = useState(null)
 
-  const contacts = useSelector(state => state.contacts)
-  const filter = useSelector(state => state.filterChange)
-  const isLoading = useSelector(state => state.loading)
+  const contacts = useSelector(state => state.contactsReducer.contacts)
+  const filter = useSelector(state => state.contactsReducer.filterChange)
+  const isLoading = useSelector(state => state.contactsReducer.loading)
   
   const dispatch = useDispatch()
   const onDeleteContact = (id) => dispatch(deleteContact(id))

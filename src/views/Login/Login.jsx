@@ -1,10 +1,15 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import * as authOperations from '../../Redux/auth/auth-operations'
+
 import style from './Login.module.scss'
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
+    const displatch = useDispatch()
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -21,6 +26,8 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        displatch(authOperations.logIn({email, password}))
 
         console.log({email, password})
     }
