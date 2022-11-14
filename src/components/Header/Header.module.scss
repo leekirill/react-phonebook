@@ -4,9 +4,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 38px;
         .logo {
-            width: 100px;
-            .link {
+            display: inherit;
+            gap: 20px;
+            align-items: center;
+            .logoLink {
                 text-decoration: none;
                 color: #000;
                 font-size: 24px;
@@ -19,21 +22,75 @@
                     color: #5076ff;
                 }
             }
+            .link {
+                text-decoration: none;
+                color: #000;
+
+                &:hover {
+                    color: #5076ff;
+                }
+
+                &Active {
+                    @extend .link;
+                    color: #5076ff;
+                }
+            }
         }
-        .signup {
+        .nav {
             display: inherit;
             gap: 20px;
             font-size: 16px;
             .link {
                 text-decoration: none;
                 color: #000;
+        
+                &:hover {
+                    color: #5076ff;
+                }
+        
                 &Active {
                     @extend .link;
                     color: #5076ff;
-
                 }
+        }
+    }
+}
+    .signup {
+        display: inherit;
+        gap: 20px;
+        font-size: 16px;
+
+        .link {
+            text-decoration: none;
+            color: #000;
+
+            &:hover {
+                color: #5076ff;
+            }
+
+            &Active {
+                @extend .link;
+                color: #5076ff;
             }
         }
 
+        .logOut,
+        button {
+            @extend .signup;
+            padding: 1px 0;
+            color: #000;
+            background-color: none;
+
+            &:hover {
+                background-color: none;
+                color: #5076ff;
+            }
+        }
+    }
+    
+    .user {
+        display: flex;
+        align-items: center;
+        gap: 20px;
     }
 }

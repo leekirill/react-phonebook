@@ -11,6 +11,12 @@ const Register = () => {
     
     const dispatch = useDispatch()
 
+    const cleanInput = (value) => {
+        setName(value)
+        setEmail(value)
+        setPassword(value)
+    }
+
     const handleChange = (e) => {
         const name = e.target.name
 
@@ -28,11 +34,10 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
+        cleanInput('')
+
         dispatch(authOperations.register({ name, email, password }))
-        
-        console.log(
-            {name, email, password}
-        )
+
     }
 
     return (

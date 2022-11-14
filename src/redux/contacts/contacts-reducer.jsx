@@ -59,14 +59,11 @@ const contactSlice = createSlice({
         [fetchContact.pending]: (state, _) => { state.loading = true },
         [addContact.pending]: (state, _) => { state.loading = true },
         [deleteContact.pending]: (state, _) => { state.loading = true },
-        [editContact.pending]: (state, _) => {
-            state.loading = true
-
-            // return {
-            //     ...state,
-            //     loading: true,
-            // }
-        },
+        [editContact.pending]: (state, _) => { state.loading = true },
+        [fetchContact.rejected]: (state, _) => { state.loading = false },
+        [addContact.rejected]: (state, _) => { state.loading = false },
+        [deleteContact.rejected]: (state, _) => { state.loading = false },
+        [editContact.rejected]: (state, _) => {state.loading = false},
     }
 })
 

@@ -9,14 +9,14 @@ import Filter from "../../Components/Filter/Filter";
 import ContactForm from "../../Components/ContactForm/ContactForm";
 import ContactList from "../../Components/ContactList/ContactList";
 
-import style from './Homepage.module.scss'
+import style from './Contacts.module.scss'
 
-const Homepage = () => {
+const Contacts = () => {
 
 const [isActive, setIsActive] = useState(false);
 
-  const contacts = useSelector((state) => state.contacts);
-  const isLoading = useSelector((state) => state.loading);
+  const contacts = useSelector((state) => state.contactsReducer.contacts);
+  const isLoading = useSelector((state) => state.contactsReducer.loading);
 
   const dispatch = useDispatch();
 
@@ -69,4 +69,4 @@ const [isActive, setIsActive] = useState(false);
         
 }     
 
-export default Homepage
+export default Contacts
