@@ -2,12 +2,12 @@ import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 
 
-const PublicRoute = ({ children, restricted = false }) => {
-
+const PrivateRoute = ({children}) => {
     const isLoggedIn = useSelector(state => state.authReducer.toLoggedIn)
+
     return (
-        isLoggedIn && restricted ? <Navigate replace to='/' /> : children
+       isLoggedIn ? children : <Navigate replace to='/login'/>
     )
 }
 
-export default PublicRoute 
+export default PrivateRoute

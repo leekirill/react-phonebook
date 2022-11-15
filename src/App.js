@@ -1,16 +1,22 @@
+import "./index.scss";
+
+import { Suspense, lazy } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-
-import Header from "./Components/Header/Header";
-import Home from "./Views/Home/Home";
-import Contacts from "./Views/Contacts/Contacts";
-import Register from "./Views/Register/Register";
-import Login from "./Views/Login/Login";
-
 import { getCurrentUser } from "./Redux/auth/auth-operations";
 import { useDispatch } from "react-redux";
 
-import "./index.scss";
-import { useEffect } from "react";
+import Header from "./Components/Header/Header";
+import { ThreeDots } from "react-loader-spinner";
+
+const Home = lazy(() => import("./Views/Home/Home"));
+const Contacts = lazy(() => import("./Views/Contacts/Contacts"));
+const Register = lazy(() => import("./Views/Register/Register"));
+const Login = lazy(() => import("./Views/Login/Login"));
+const PrivateRoute = lazy(() =>
+  import("./Components/PrivateRoute/PrivateRoute")
+);
+const PublicRoute = lazy(() => import("./Components/PublicRoute/PublicRoute"));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -22,12 +28,55 @@ export default function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="contacts" element={<Contacts />} />
-        <Route path="signup" element={<Register />} />
-        <Route path="login" element={<Login />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <ThreeDots
+            height="40"
+            width="40"
+            radius="9"
+            color="#5076ff"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{ justifyContent: "center" }}
+            wrapperClassName=""
+            visible={true}
+          />
+        }
+      >
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <Home />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <PublicRoute restricted>
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute restricted>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <Contacts />
+              </PrivateRoute>
+            }
+          ></Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

@@ -1,42 +1,28 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from "react-hook-form";
+import { ThreeDots } from 'react-loader-spinner'
 import * as authOperations from '../../Redux/auth/auth-operations'
 
 import style from './Login.module.scss'
 
 const Login = () => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit } = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+    })
+
+    const isLoading = useSelector(state => state.authReducer.isLoading)
     const displatch = useDispatch()
 
     const onSubmit = ({email, password}) => {
-        displatch(authOperations.logIn({email, password}))
+        displatch(authOperations.logIn({ email, password }))
+
+        const input = document.getElementsByTagName('input')
+        Array.from(input).map(e => e.disabled = 'true')
     };
-
-    // const [email, setEmail] = useState('')
-    // const [password, setPassword] = useState('')
-    
-    // const displatch = useDispatch()
-    // const handleChange = (e) => {
-    //     const name = e.target.name
-    //     const value = e.target.value
-
-    //     switch (name) {
-    //         case 'email':
-    //             return setEmail(value);
-    //         case 'password':
-    //             return setPassword(value);
-    //         default: return
-    //     }
-    // }
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-
-    //     displatch(authOperations.logIn({ email, password }))
-        
-    //     cleanInput('')
-    // }
 
     return (
     <div className={style.container}>
@@ -45,7 +31,16 @@ const Login = () => {
                 <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
                     <input type='email' {...register("email")} placeholder='email'></input>
                     <input type='password' {...register("password")} placeholder='password'></input>
-                <button className={style.btn} type='submit'>Log in</button>
+                <button className={style.btn} type='submit'>{isLoading ? <ThreeDots
+                    height="18"
+                    width="40"
+                    radius="9"
+                    color="#fff"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{justifyContent:'center'}}
+                    wrapperClassName=""
+                    visible={true}
+                    /> :'Log in'}</button>
             </form>
         </div>
     </div>
