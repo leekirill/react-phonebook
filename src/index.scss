@@ -10,7 +10,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fff;
 }
 
 code {
@@ -20,7 +19,7 @@ code {
 
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;`
   gap: 20px;
 }
 
