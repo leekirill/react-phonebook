@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import * as authOperations from '../../Redux/auth/auth-operations'
 import style from './Header.module.scss'
+import Button from 'react-bootstrap/Button';
+
 
 
 const Header = () => {
@@ -29,7 +31,7 @@ const Header = () => {
                     </div> :
                     <div className={style.user}>
                         <span>{`Welcome, ${userName}`}</span>
-                        <button className={style.logOut} onClick={() => dispatch(authOperations.logOut())}>{`Log out`}</button>
+                        <Button onClick={() => dispatch(authOperations.logOut())}>{`Log out`}</Button>
                     </div>
                     }
                 </div>

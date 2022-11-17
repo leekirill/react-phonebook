@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { addContact } from "../../Redux/contacts/contacts-operations";
 import { useSelector, useDispatch } from "react-redux";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export default function ContactForm() {
 
