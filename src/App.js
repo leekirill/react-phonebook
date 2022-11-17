@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 import Header from "./Components/Header/Header";
 import { ThreeDots } from "react-loader-spinner";
+import Container from "react-bootstrap/Container";
 
 const Home = lazy(() => import("./Views/Home/Home"));
 const Contacts = lazy(() => import("./Views/Contacts/Contacts"));
@@ -27,56 +28,58 @@ export default function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Suspense
-        fallback={
-          <ThreeDots
-            height="40"
-            width="40"
-            radius="9"
-            color="#5076ff"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{ justifyContent: "center" }}
-            wrapperClassName=""
-            visible={true}
-          />
-        }
-      >
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <PublicRoute>
-                <Home />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="signup"
-            element={
-              <PublicRoute restricted>
-                <Register />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute restricted>
-                <Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute>
-                <Contacts />
-              </PrivateRoute>
-            }
-          ></Route>
-        </Routes>
-      </Suspense>
+      <Container>
+        <Header />
+        <Suspense
+          fallback={
+            <ThreeDots
+              height="40"
+              width="40"
+              radius="9"
+              color="#5076ff"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{ justifyContent: "center" }}
+              wrapperClassName=""
+              visible={true}
+            />
+          }
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <Home />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="signup"
+              element={
+                <PublicRoute restricted>
+                  <Register />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute restricted>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute>
+                  <Contacts />
+                </PrivateRoute>
+              }
+            ></Route>
+          </Routes>
+        </Suspense>
+      </Container>
     </div>
   );
 }

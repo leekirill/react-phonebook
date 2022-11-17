@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { ThreeDots } from 'react-loader-spinner'
 import * as authOperations from '../../Redux/auth/auth-operations'
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 import style from './Login.module.scss'
 
 const Login = () => {
@@ -25,26 +28,46 @@ const Login = () => {
     };
 
     return (
-    <div className={style.container}>
-        <div className={style.content}> 
-            <h2>Log in</h2>
-                <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-                    <input type='email' {...register("email")} placeholder='email'></input>
-                    <input type='password' {...register("password")} placeholder='password'></input>
-                <button className={style.btn} type='submit'>{isLoading ? <ThreeDots
-                    height="18"
-                    width="40"
-                    radius="9"
-                    color="#fff"
-                    ariaLabel="three-dots-loading"
-                    wrapperStyle={{justifyContent:'center'}}
-                    wrapperClassName=""
-                    visible={true}
-                    /> :'Log in'}</button>
-            </form>
-        </div>
-    </div>
-    )
+    <Form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Log in
+      </Button>
+    </Form>)
+
+    // return (
+    // <div className={style.container}>
+    //     <div className={style.content}> 
+    //         <h2>Log in</h2>
+    //             <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+    //                 <input type='email' {...register("email")} placeholder='email'></input>
+    //                 <input type='password' {...register("password")} placeholder='password'></input>
+    //             <button className={style.btn} type='submit'>{isLoading ? <ThreeDots
+    //                 height="18"
+    //                 width="40"
+    //                 radius="9"
+    //                 color="#fff"
+    //                 ariaLabel="three-dots-loading"
+    //                 wrapperStyle={{justifyContent:'center'}}
+    //                 wrapperClassName=""
+    //                 visible={true}
+    //                 /> :'Log in'}</button>
+    //         </form>
+    //     </div>
+    // </div>
+    // )
 }
 
 export default Login

@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux'
 import * as authOperations from '../../Redux/auth/auth-operations'
 import style from './Register.module.scss'
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 const Register = () => {
     
     const [name, setName] = useState('')
@@ -40,19 +43,39 @@ const Register = () => {
 
     }
 
-    return (
-        <div className={style.container}>
-            <div className={style.content}>
-                <h2 className={style.h2}>Sign up</h2>
-                <form className={style.form} onSubmit={handleSubmit}>
-                    <input className={style.input} type="text" name='name' onChange={handleChange} value={name} placeholder='username'/>
-                    <input className={style.input} type="email" name='email' onChange={handleChange} value={email} placeholder='email'/>
-                    <input className={style.input} type="password" name='password' onChange={handleChange} value={password} placeholder='password'/>
-                    <button className={style.btn} type='submit'>Sign up</button>
-                </form>
-            </div>
-        </div>
-    )
+return (
+    <Form>
+      <Form.Group className="mb-3" controlId="formBasicUsername">
+        <Form.Label>Username</Form.Label>
+        <Form.Control type="text" placeholder="Username" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" />
+      </Form.Group>
+     <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Sign up
+      </Button>
+    </Form>)
+
+    // return (
+    //     <div className={style.container}>
+    //         <div className={style.content}>
+    //             <h2 className={style.h2}>Sign up</h2>
+    //             <form className={style.form} onSubmit={handleSubmit}>
+    //                 <input className={style.input} type="text" name='name' onChange={handleChange} value={name} placeholder='username'/>
+    //                 <input className={style.input} type="email" name='email' onChange={handleChange} value={email} placeholder='email'/>
+    //                 <input className={style.input} type="password" name='password' onChange={handleChange} value={password} placeholder='password'/>
+    //                 <button className={style.btn} type='submit'>Sign up</button>
+    //             </form>
+    //         </div>
+    //     </div>
+    // )
 }
 
 export default Register
+
