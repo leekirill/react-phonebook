@@ -12,16 +12,16 @@ import {ReactComponent as Img} from '../../assets/moscot-hero.svg';
 const Login = () => {
 
     const { register, handleSubmit } = useForm({
-    defaultValues: {
-      email: '',
-      password: ''
-    }
+        defaultValues: {
+            email: '',
+            password: ''
+        }
     })
 
     const isLoading = useSelector(state => state.authReducer.isLoading)
     const displatch = useDispatch()
 
-    const onSubmit = ({email, password}) => {
+    const onSubmit = ({ email, password }) => {
         displatch(authOperations.logIn({ email, password }))
 
         const input = document.getElementsByTagName('input')
@@ -29,52 +29,30 @@ const Login = () => {
     };
 
     return (
-        <div className={s.content}>  
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" {...register("email")} placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+        <div className={s.content}>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" {...register("email")} placeholder="Enter email" />
+                    <Form.Text className="text-muted">
+                        We'll never share your email with anyone else.
+                    </Form.Text>
+                </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" {...register("password")} placeholder="Password" />
-      </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" {...register("password")} placeholder="Password" />
+                </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Log in
-      </Button>
+                <Button variant="primary" type="submit">
+                    {isLoading ? <ThreeDots /> : 'Log in'}
+                </Button>
             </Form>
-                    <div>   
-            <Img/>
-        </div>
+            <div>
+                <Img />
+            </div>
         </div>
     )
-
-    // return (
-    // <div className={style.container}>
-    //     <div className={style.content}> 
-    //         <h2>Log in</h2>
-    //             <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-    //                 <input type='email' {...register("email")} placeholder='email'></input>
-    //                 <input type='password' {...register("password")} placeholder='password'></input>
-    //             <button className={style.btn} type='submit'>{isLoading ? <ThreeDots
-    //                 height="18"
-    //                 width="40"
-    //                 radius="9"
-    //                 color="#fff"
-    //                 ariaLabel="three-dots-loading"
-    //                 wrapperStyle={{justifyContent:'center'}}
-    //                 wrapperClassName=""
-    //                 visible={true}
-    //                 /> :'Log in'}</button>
-    //         </form>
-    //     </div>
-    // </div>
-    // )
 }
 
 export default Login
