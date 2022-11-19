@@ -3,21 +3,21 @@ import "./index.scss";
 import { Suspense, lazy } from "react";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { getCurrentUser } from "./Redux/auth/auth-operations";
+import { getCurrentUser } from "./redux/auth/auth-operations";
 import { useDispatch } from "react-redux";
 
-import Header from "./Components/Header/Header";
+import Header from "./components/Header/Header";
 import { ThreeDots } from "react-loader-spinner";
 import Container from "react-bootstrap/Container";
 
-const Home = lazy(() => import("./Views/Home/Home"));
-const Contacts = lazy(() => import("./Views/Contacts/Contacts"));
-const Register = lazy(() => import("./Views/Register/Register"));
-const Login = lazy(() => import("./Views/Login/Login"));
+const Home = lazy(() => import("./views/Home/Home"));
+const Contacts = lazy(() => import("./views/Contacts/Contacts"));
+const Register = lazy(() => import("./views/Register/Register"));
+const Login = lazy(() => import("./views/Login/Login"));
 const PrivateRoute = lazy(() =>
-  import("./Components/PrivateRoute/PrivateRoute")
+  import("./components/PrivateRoute/PrivateRoute")
 );
-const PublicRoute = lazy(() => import("./Components/PublicRoute/PublicRoute"));
+const PublicRoute = lazy(() => import("./components/PublicRoute/PublicRoute"));
 
 export default function App() {
   const dispatch = useDispatch();

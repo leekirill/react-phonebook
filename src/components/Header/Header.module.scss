@@ -59,6 +59,7 @@
         display: inherit;
         gap: 20px;
         font-size: 16px;
+        align-items: center;
 
         .link {
             text-decoration: none;
@@ -74,18 +75,6 @@
             }
         }
 
-        .logOut,
-        button {
-            @extend .signup;
-            padding: 1px 0;
-            color: #000;
-            background-color: none;
-
-            &:hover {
-                background-color: none;
-                color: #5076ff;
-            }
-        }
     }
     
     .user {
@@ -94,3 +83,4 @@
         gap: 20px;
     }
 }
+

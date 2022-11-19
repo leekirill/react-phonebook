@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { fetchContact } from "../../Redux/contacts/contacts-operations";
+import { fetchContact } from "../../redux/contacts/contacts-operations";
 import { ThreeDots } from "react-loader-spinner";
 
-import Filter from "../../Components/Filter/Filter";
-import ContactForm from "../../Components/ContactForm/ContactForm";
-import ContactList from "../../Components/ContactList/ContactList";
+import Filter from "../../components/Filter/Filter";
+import ContactForm from "../../components/ContactForm/ContactForm";
+import ContactList from "../../components/ContactList/ContactList";
 
 import style from './Contacts.module.scss'
 

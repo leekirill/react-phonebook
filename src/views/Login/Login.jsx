@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from "react-hook-form";
 import { ThreeDots } from 'react-loader-spinner'
-import * as authOperations from '../../Redux/auth/auth-operations'
+import * as authOperations from '../../redux/auth/auth-operations'
 import s from './Login.module.scss'
 
 import Button from 'react-bootstrap/Button';

@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
-import * as authOperations from '../../Redux/auth/auth-operations'
+import * as authOperations from '../../redux/auth/auth-operations'
 import style from './Header.module.scss'
+
 import Button from 'react-bootstrap/Button';
 
 
@@ -26,8 +27,8 @@ const Header = () => {
                     </div>
                     {!isLoggedIt ?
                     <div className={style.signup}>
-                        <NavLink to='signup' className={({isActive}) => isActive ? style.linkActive : style.link}>Sign up</NavLink>
-                        <NavLink to='login' className={({isActive}) => isActive ? style.linkActive : style.link}>Log in</NavLink>
+                        <NavLink to='signup' className={style.link}>Sign up</NavLink>
+                        <NavLink to='login'><Button variant="primary">Log in</Button></NavLink>
                     </div> :
                     <div className={style.user}>
                             <span>{userName}</span>

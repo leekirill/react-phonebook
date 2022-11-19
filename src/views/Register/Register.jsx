@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import * as authOperations from '../../Redux/auth/auth-operations'
+import * as authOperations from '../../redux/auth/auth-operations'
 import s from './Register.module.scss'
 
 import Button from 'react-bootstrap/Button';

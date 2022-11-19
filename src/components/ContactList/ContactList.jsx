@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
-import { deleteContact } from '../../Redux/contacts/contacts-operations'
+import { deleteContact } from '../../redux/contacts/contacts-operations'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { nanoid } from 'nanoid'
