@@ -6,8 +6,9 @@ const PublicRoute = ({ children, restricted = false }) => {
 
     const isLoggedIn = useSelector(state => state.authReducer.toLoggedIn)
     return (
-        isLoggedIn && restricted ? <Navigate replace to='/' /> : children
+        isLoggedIn && restricted ? <Navigate replace to='/contacts' /> : children
     )
 }
 
 export default PublicRoute 
+

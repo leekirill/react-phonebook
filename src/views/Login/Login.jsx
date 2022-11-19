@@ -7,7 +7,7 @@ import s from './Login.module.scss'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import {ReactComponent as Img} from '../../assets/moscot-hero.svg';
+import {ReactComponent as Image} from '../../assets/Reset password-pana 1.svg';
 
 const Login = () => {
 
@@ -30,7 +30,10 @@ const Login = () => {
 
     return (
         <div className={s.content}>
+            
+            
             <Form onSubmit={handleSubmit(onSubmit)}>
+                <h1 style={{marginBottom: '30px'}}>Log in</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" {...register("email")} placeholder="Enter email" />
@@ -44,14 +47,24 @@ const Login = () => {
                     <Form.Control type="password" {...register("password")} placeholder="Password" />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    {isLoading ? <ThreeDots /> : 'Log in'}
+                <Button variant="primary" type="submit" style={{background: '#2877EF', border: '1px solid #2877EF'}}>
+                    {isLoading ?
+                    <ThreeDots
+                    height="24"
+                    width="30"
+                    radius="9"
+                    color="#fff"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{justifyContent: 'center'}}
+                    wrapperClassName=""
+                    visible={true}
+                    /> : 'Log in'}
                 </Button>
             </Form>
             <div>
-                <Img />
+                {<Image />}
             </div>
-        </div>
+            </div>
     )
 }
 

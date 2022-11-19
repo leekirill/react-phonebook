@@ -30,7 +30,7 @@ const Header = () => {
                         <NavLink to='login' className={({isActive}) => isActive ? style.linkActive : style.link}>Log in</NavLink>
                     </div> :
                     <div className={style.user}>
-                        <span>{`Welcome, ${userName}`}</span>
+                            <span>{userName}</span>
                         <Button onClick={() => dispatch(authOperations.logOut())}>{`Log out`}</Button>
                     </div>
                     }

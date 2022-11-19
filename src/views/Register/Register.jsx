@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import * as authOperations from '../../Redux/auth/auth-operations'
+import s from './Register.module.scss'
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -43,6 +44,7 @@ const Register = () => {
     }
 
 return (
+    <div className={s.content}>
     <Form>
       <Form.Group className="mb-3" controlId="formBasicUsername">
         <Form.Label>Username</Form.Label>
@@ -59,7 +61,10 @@ return (
       <Button variant="primary" type="submit">
         Sign up
       </Button>
-    </Form>)
+    </Form>
+    <div>{/* <Img /> */}</div>
+    </div>
+    )
 
     // return (
     //     <div className={style.container}>
