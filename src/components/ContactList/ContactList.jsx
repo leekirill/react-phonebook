@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { nanoid } from 'nanoid'
 import { ThreeDots } from 'react-loader-spinner'
 import ContactListForm from './ContactListForm'
+
 import style from './ContactList.module.scss'
 
 export default function ContactList() {
@@ -41,7 +42,10 @@ export default function ContactList() {
           if (id === index && isActive === true) {
             return <ContactListForm key={nanoid(2)} name={name} number={number} setIsActive={setIsActive} index={index} />
           } 
-            return <li key={nanoid(2)} className={style.li}><span className={style.span}>{`${name + ": " + number}`}</span><button className={style.btnEdit} onClick={() => editContact(id)}><FontAwesomeIcon icon={faEdit} /></button><button className={style.btnDelete} onClick={() => onClickDeleteContact(id)}><FontAwesomeIcon icon={faTrash} /></button></li>;
+          return (
+            <li key={nanoid(2)} className={style.li}><span className={style.span}>{`${name + ": " + number}`}</span><button className={style.btnEdit} onClick={() => editContact(id)}><FontAwesomeIcon icon={faEdit} /></button><button className={style.btnDelete} onClick={() => onClickDeleteContact(id)}><FontAwesomeIcon icon={faTrash} /></button></li>
+          )
+          ;
         })}
 
       </ul>

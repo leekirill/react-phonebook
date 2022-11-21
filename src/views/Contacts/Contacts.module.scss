@@ -1,16 +1,6 @@
 .content {
     padding: 100px 250px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-evenly;
-    gap: 100px;
-
-    .form {
-        width: 500px;
-    }
-    .contacts {
-        width: 500px;
-    }
 
     .button {
         display: inline;
@@ -33,7 +23,12 @@
         div[aria-label="three-dots-loading"] {
             justify-content: center;
         }
-
+        
+        &Header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         .searchBtn {
             padding: 8px 10px;
             border-radius: 4px;

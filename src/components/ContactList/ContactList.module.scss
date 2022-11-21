@@ -1,5 +1,6 @@
 .contactsList {
     margin: 20px 0;
+    padding: 0;
 
     div[aria-label="three-dots-loading"] {
         justify-content: center;
@@ -9,7 +10,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 0px;
+        padding: 20px 0px;
         border-top: 1px solid #c4c4c4;
         &:last-child {
             border-bottom: 1px solid #c4c4c4;
@@ -26,7 +27,10 @@
 }
 
 .btn {
+
     &Delete {
+        outline: none;
+        border: none;
         background: transparent;
         color: #b1b1b1;
         transition: 250ms;
@@ -39,6 +43,7 @@
 
     &Edit {
         @extend .btnDelete;
+        margin-right: 14px;
         &:hover {
             color: #5076ff
         }

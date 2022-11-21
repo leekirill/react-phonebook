@@ -34,22 +34,23 @@ const Contacts = () => {
     return (
         
         <div className={style.content}>
-        <Button variant="primary" onClick={handleShow}>
-        Launch
-      </Button>
 
-                  <Offcanvas show={show} onHide={handleClose}>
-                    <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Add new contact</Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body>
-                    <ContactForm handleClose={handleClose} />     
-                    </Offcanvas.Body>
-                </Offcanvas>
+            <Offcanvas show={show} onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Add new contact</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                <ContactForm handleClose={handleClose} />     
+                </Offcanvas.Body>
+            </Offcanvas>
 
             <div className={style.contacts}>
-
+                    <div className={style.contactsHeader}>
                     <h2>Contacts</h2>
+                        <Button variant="primary" onClick={handleShow}>
+                            Add contact
+                        </Button>
+                    </div>
                     <ContactList />
                     <div className={style.contactsHeading}>
                         {isActive ? (
