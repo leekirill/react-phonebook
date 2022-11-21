@@ -5,66 +5,50 @@ import s from './Register.module.scss'
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useForm } from 'react-hook-form'
+
+import {ReactComponent as Image} from '../../assets/Reset password-pana 1.svg';
 
 const Register = () => {
     
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const {register, handleSubmit} = useForm()
     
     const dispatch = useDispatch()
 
-    const cleanInput = (value) => {
-        setName(value)
-        setEmail(value)
-        setPassword(value)
-    }
+    const onSubmit = ({ name, email, password }) => {
+      dispatch(authOperations.logIn({ name, email, password }))
 
-    const handleChange = (e) => {
-        const name = e.target.name
-
-        switch (name) {
-            case 'name': 
-                return setName(e.target.value);
-            case 'email':
-                return setEmail(e.target.value);
-            case 'password':
-                return setPassword(e.target.value);
-            default: return
-        }
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        cleanInput('')
-
-        dispatch(authOperations.register({ name, email, password }))
-
-    }
+      const input = document.getElementsByTagName('input')
+      Array.from(input).map(e => e.disabled = 'true')
+};
 
 return (
     <div className={s.content}>
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <h1 style={{marginBottom: '30px'}}>Sign up</h1>
       <Form.Group className="mb-3" controlId="formBasicUsername">
         <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Username" />
+        <Form.Control {...register('name')} type="text" placeholder="Username" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control {...register('email')} type="email" placeholder="Enter email" />
       </Form.Group>
      <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control {...register('password')} type="password" placeholder="Password" />
       </Form.Group>
       <Button variant="primary" type="submit">
         Sign up
       </Button>
     </Form>
-    <div>{/* <Img /> */}</div>
+    <div><Image /></div>
     </div>
-    )
+)
+  
+  
+  
+  
 
     // return (
     //     <div className={style.container}>
