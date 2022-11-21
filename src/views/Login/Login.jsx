@@ -32,7 +32,7 @@ const Login = () => {
         <div className={s.content}>
             
             
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form onSubmit={handleSubmit(onSubmit)} style={{ width: '30%'}}>
                 <h1 style={{marginBottom: '30px'}}>Log in</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

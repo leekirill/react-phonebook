@@ -15,7 +15,6 @@ export default function ContactList() {
 
   const contacts = useSelector(state => state.contactsReducer.contacts)
   const filter = useSelector(state => state.contactsReducer.filterChange)
-  const isLoading = useSelector(state => state.contactsReducer.loading)
   
   const dispatch = useDispatch()
   const onDeleteContact = (id) => dispatch(deleteContact(id))
@@ -37,16 +36,7 @@ export default function ContactList() {
     return (
       <ul className={style.contactsList}>
         
-        {isLoading ? <ThreeDots 
-          height="40" 
-          width="40" 
-          radius="9"
-          color="#5076ff" 
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-          /> : filteredContacts.map(({ id, name, number }) => {
+        {filteredContacts.map(({ id, name, number }) => {
 
           if (id === index && isActive === true) {
             return <ContactListForm key={nanoid(2)} name={name} number={number} setIsActive={setIsActive} index={index} />

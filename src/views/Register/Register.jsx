@@ -24,7 +24,7 @@ const Register = () => {
 
 return (
     <div className={s.content}>
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} style={{ width: '30%'}}>
       <h1 style={{marginBottom: '30px'}}>Sign up</h1>
       <Form.Group className="mb-3" controlId="formBasicUsername">
         <Form.Label>Username</Form.Label>

@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { fetchContact } from "../../redux/contacts/contacts-operations";
-import { ThreeDots } from "react-loader-spinner";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import Button from "react-bootstrap/Button";
+
 
 import Filter from "../../components/Filter/Filter";
 import ContactForm from "../../components/ContactForm/ContactForm";
@@ -11,40 +13,42 @@ import ContactList from "../../components/ContactList/ContactList";
 
 import style from './Contacts.module.scss'
 
+
 const Contacts = () => {
 
-const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+    const [show, setShow] = useState(false);
+    
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-  const contacts = useSelector((state) => state.contactsReducer.contacts);
-  const isLoading = useSelector((state) => state.contactsReducer.loading);
+    const contacts = useSelector((state) => state.contactsReducer.contacts);
+    const isLoading = useSelector((state) => state.contactsReducer.loading);
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchContact());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchContact());
+    }, [dispatch]);
 
     return (
+        
         <div className={style.content}>
-                <div className={style.form}>
-                    <h2>Add new contact</h2>
-                    <ContactForm />
-                </div>
+        <Button variant="primary" onClick={handleShow}>
+        Launch
+      </Button>
+
+                  <Offcanvas show={show} onHide={handleClose}>
+                    <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Add new contact</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                    <ContactForm handleClose={handleClose} />     
+                    </Offcanvas.Body>
+                </Offcanvas>
 
             <div className={style.contacts}>
-                {isLoading ? (
-                    <ThreeDots
-                    height="40"
-                    width="40"
-                    radius="9"
-                    color="#5076ff"
-                    ariaLabel="three-dots-loading"
-                    wrapperStyle={{}}
-                    wrapperClassName=""
-                    visible={true}
-                    />
-                ) : (
-                    <>
+
                     <h2>Contacts</h2>
                     <ContactList />
                     <div className={style.contactsHeading}>
@@ -60,8 +64,7 @@ const [isActive, setIsActive] = useState(false);
                         )}
                         <p>Total: {contacts && contacts.length}</p>
                     </div>
-                    </>
-                )}
+
                 </div>
            </div>
 

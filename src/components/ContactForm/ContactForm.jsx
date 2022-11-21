@@ -3,77 +3,90 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { addContact } from "../../redux/contacts/contacts-operations";
 import { useSelector, useDispatch } from "react-redux";
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
+import { useForm } from "react-hook-form";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Spinner } from "react-bootstrap";
 
-export default function ContactForm() {
 
-    const [name, setName] = useState('')
-    const [number, setNumber] = useState('')
+
+export default function ContactForm({handleClose}) {
+
+    const {register, handleSubmit} = useForm()
+
     
     const contacts = useSelector(state => state.contactsReducer.contacts)
+    const isLoading = useSelector(state => state.contactsReducer.loading)
 
     const dispatch = useDispatch()
-    const onSubmit = (contact) => dispatch(addContact(contact))
-
-    const handleChange = (e) => {
-        const name = e.currentTarget.name
-       
-        switch (name) {
-            case 'name':
-                setName(e.currentTarget.value)
-                break
-            case 'number':
-                setNumber(e.currentTarget.value)
-                break
-            default:
-                throw new Error('Ошибка')
-        }
-    };
     
-    const handleSubmit = e => {
-        e.preventDefault();
+    const onSubmit = ({ name, number }) => {
+        
+        console.log(name, number)
 
         // валидация имени
         const contactName = contacts.every(e => e.name !== name)
 
          if (contactName) {
-            onSubmit({name,number}) 
-            reset()
+            dispatch(addContact({name, number}))
          } else {
              alert(`${name} is already in contacts.`)
          }
     }
-    
-    const reset = () => {
-        setName('')
-        setNumber('')
-    };
 
-        return (
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                    required
-                    value={name}
-                    onChange={handleChange}
-                    placeholder="name"
-                />
-                <input
-                    type="tel"
-                    name="number"
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                    required
-                    value={number}
-                    onChange={handleChange}
-                    placeholder="number"
-                />
-                <button type="submit" className='button'>Add contact <FontAwesomeIcon icon={faPlus} /></button>
-            </form>) 
+    return (
+            <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="text" {...register("name")} placeholder="Enter name" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Phone number</Form.Label>
+                    <Form.Control type="tel" {...register("number")} placeholder="Tel" />
+                </Form.Group>
+
+                {isLoading ? <Button variant="primary" disabled>
+                    <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    />
+                
+                    </Button>:
+                <Button variant="primary" type="submit" style={{background: '#2877EF', border: '1px solid #2877EF'}} onClick={handleClose}>
+                Add contact
+                </Button>}
+            </Form>
+    )
+
+    
+        // return (
+        //     <form onSubmit={handleSubmit}>
+        //         <input
+        //             type="text"
+        //             name="name"
+        //             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        //             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        //             required
+        //             value={name}
+        //             onChange={handleChange}
+        //             placeholder="name"
+        //         />
+        //         <input
+        //             type="tel"
+        //             name="number"
+        //             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        //             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        //             required
+        //             value={number}
+        //             onChange={handleChange}
+        //             placeholder="number"
+        //         />
+        //         <button type="submit" className='button'>Add contact <FontAwesomeIcon icon={faPlus} /></button>
+        //     </form>) 
     
 }
 
