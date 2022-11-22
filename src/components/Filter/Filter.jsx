@@ -1,7 +1,7 @@
 import React from "react"
 import { filter } from '../../redux/contacts/contacts-reducer'
 import { useSelector, useDispatch } from "react-redux"
-
+import Form from 'react-bootstrap/Form';
 
 export default function Filter() {
     
@@ -11,16 +11,16 @@ export default function Filter() {
     const onChange = (e) => dispatch(filter(e.target.value))
 
     return (
-        <React.Fragment>
-            <label className="labels__search">
-                <input
+        <Form.Group>
+            <Form.Label className="labels__search">
+                <Form.Control
                     type="text"
                     name="filter"
                     value={value}
                     onChange={onChange}
                     placeholder="Find contact by name"
-                ></input>
-            </label>
-        </React.Fragment>
+                ></Form.Control>
+            </Form.Label>
+        </Form.Group>
     )
 }

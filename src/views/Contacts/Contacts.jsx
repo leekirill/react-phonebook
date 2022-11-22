@@ -40,7 +40,7 @@ const Contacts = () => {
                 <Offcanvas.Title>Add new contact</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                <ContactForm handleClose={handleClose} />     
+                    <ContactForm handleClose={handleClose} />     
                 </Offcanvas.Body>
             </Offcanvas>
 
