@@ -26,6 +26,7 @@ export default function ContactListForm({ name, number, index, setIsActive, hand
     return (
         <Form onSubmit={() => saveContact(index, contactsName, contactsNumber)}>
             <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Name</Form.Label>
                 <Form.Control
                     type="text"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -35,6 +36,7 @@ export default function ContactListForm({ name, number, index, setIsActive, hand
                 </Form.Control>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Phone number</Form.Label>
                 <Form.Control
                     type="tel"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

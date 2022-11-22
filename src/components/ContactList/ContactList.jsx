@@ -51,7 +51,7 @@ export default function ContactList() {
             <> 
               <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Add new contact</Offcanvas.Title>
+                <Offcanvas.Title>Edit contact</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                   <ContactListForm key={nanoid(2)} name={name} number={number} setIsActive={setIsActive} index={index} handleShow={handleShow} />
